@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>RadicalLondon Wrapped 2026</title>
+<style>
+/* Layout: RadicalMedia white — logo + Wrapped-joke header, then a long scrolling year report. Helvetica Neue only: Light body, Medium heads. Prev: Wrapped-parody header, then a long scrolling year report: numbers, month-by-month timeline, a card per job (director first), locations, budgets, people, then the full tables. Single dark look by choice. */
+:root{
+  color-scheme: light;
+  --bg:#FFFFFF; --panel:#F4F4F2; --panel2:#ECECEA; --line:#0000001A; --fg:#111111; --dim:#707070;
+  --ink:#111111; --cream:#F4F4F2;
+  --pink:#333333; --cobalt:#111111; --butter:#111111; --red:#444444;
+  --lilac:#666666; --tang:#777777; --teal:#999999; --mute:#CFCFCF;
+  --display:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  --grain:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg); color:var(--fg); font-family:var(--display); font-weight:300; font-size:16px; line-height:1.45; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+.wrap{max-width:1140px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--butter); outline-offset:3px}
+
+/* ---------- Wrapped header ---------- */
+.hero{position:relative; overflow:hidden; background:var(--bg); border-bottom:1px solid var(--fg)}
+.hero::before{content:none}
+.hero::after{content:none}
+.hero .wrap{position:relative; z-index:2; padding-block:48px 56px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:40px; align-items:center}
+.tape{display:inline-block; font-weight:500; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; background:var(--fg); color:#fff; padding:6px 14px; transform:rotate(-3deg); clip-path:polygon(2% 0,98% 4%,100% 50%,97% 100%,3% 96%,0 50%)}
+.hero h1{margin:18px 0 0; font-weight:500; line-height:.84; letter-spacing:-.03em; font-size:clamp(56px, 11vw, 132px); text-wrap:balance}
+.hero h1 span{display:block; font-weight:300}
+.hero h1 em{font-style:normal}
+.logo{display:block; width:min(220px, 55vw); height:auto; margin:0 0 28px}
+.hero p.lede{font-size:clamp(17px, 2vw, 20px); max-width:46ch; margin:20px 0 0; color:var(--fg)}
+.asof{font-family:var(--mono); font-size:12px; color:var(--dim); margin-top:14px; letter-spacing:.04em}
+.sharecard{position:relative; background:var(--cream); color:var(--ink); border-radius:18px; padding:22px; transform:rotate(2deg); box-shadow:0 24px 50px -24px #0004; display:grid; grid-template-columns:1fr 1fr; gap:18px 16px; min-width:0}
+.sharecard .disc{position:absolute; width:132px; right:-30px; top:-46px}
+.sharecard h3{grid-column:1/-1; margin:0; font-size:28px; line-height:.95; font-weight:500; max-width:60%}
+.sc-k{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; opacity:.65; margin-bottom:6px}
+.sharecard ol{margin:0; padding:0; list-style:none; font-weight:500; font-size:15px; line-height:1.3}
+.sharecard ol li{display:flex; gap:8px}
+.sharecard ol li b{font-family:var(--mono); font-weight:500; opacity:.55; font-size:12px; padding-top:2px}
+.sc-big{font-size:40px; font-weight:500; line-height:.9}
+.sc-mid{font-size:17px; font-weight:500; line-height:1.1}
+.disc{border-radius:50%; aspect-ratio:1; background:
+    radial-gradient(circle, var(--cream) 0 9%, #0002 9.4% 10.5%, transparent 11% 30%, #ffffff40 30.5% 31%, transparent 31.5%),
+    conic-gradient(from 20deg, #e9e3ff, #a6f0ff, #ffe1f3, #fff6c2, #c9ffd8, #e9e3ff, #ffc6e5, #b8d7ff, #e9e3ff);
+  box-shadow:inset 0 0 0 1px #fff8, 0 10px 30px #0007; animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- section nav ---------- */
+.jump{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; background:#ffffffee; backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:21; background:var(--bg)}
+.jump .wrap{display:flex; gap:6px; overflow-x:auto; padding-block:10px; scrollbar-width:none}
+.jump a{flex:none; font-family:var(--mono); font-size:12px; text-decoration:none; color:var(--dim); padding:6px 12px; border:1px solid var(--line); border-radius:999px; white-space:nowrap}
+.jump a:hover{color:var(--fg); border-color:var(--fg)}
+
+/* ---------- report ---------- */
+section{padding-block:56px 8px; scroll-margin-top:60px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim)}
+h2{font-size:clamp(32px, 5vw, 52px); font-weight:500; line-height:.95; letter-spacing:-.02em; margin:8px 0 10px; text-wrap:balance}
+.sub{color:var(--dim); max-width:66ch; margin:0 0 26px}
+.note{font-family:var(--mono); font-size:11.5px; color:var(--dim); margin:0 0 18px}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:12px}
+.tile{border-radius:16px; padding:18px 18px 16px; color:var(--ink); background:var(--c); display:flex; flex-direction:column; gap:4px; min-width:0; position:relative; overflow:hidden}
+.tile::after{content:""; position:absolute; inset:0; background-image:var(--grain); mix-blend-mode:multiply; opacity:.25; pointer-events:none}
+.tile .n{font-size:60px; font-weight:500; line-height:.85; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tile .l{font-weight:500; font-size:16px; line-height:1.15}
+.tile .s{font-family:var(--mono); font-size:11.5px; opacity:.75}
+
+.two{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; min-width:0}
+.panel h3{margin:0 0 4px; font-size:22px; font-weight:500; }
+
+/* timeline */
+.tl{display:flex; flex-direction:column}
+.month{display:grid; grid-template-columns:110px minmax(0,1fr); gap:20px; padding-block:18px; border-top:1px solid var(--line)}
+.month h3{margin:0; font-size:30px; font-weight:500; line-height:1; color:var(--c)}
+.month h3 small{display:block; font-family:var(--mono); font-size:11px; font-weight:500; color:var(--dim); letter-spacing:.08em; margin-top:6px}
+.month ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+.month li{display:grid; grid-template-columns:96px minmax(0,1fr); gap:12px; align-items:baseline}
+.month .d{font-family:var(--mono); font-size:12.5px; color:var(--dim); font-variant-numeric:tabular-nums}
+.month .e b{font-weight:500}
+.month .e span{color:var(--dim)}
+.kind{display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; padding:2px 7px; border-radius:999px; background:var(--k); color:var(--ink); margin-right:6px; vertical-align:2px}
+
+/* job cards */
+.jobs{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+.job{background:var(--panel); border:1px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; min-width:0}
+.job-top{background:var(--c); color:var(--ink); padding:16px 20px 14px; position:relative}
+.job-top::after{content:""; position:absolute; inset:0; background-image:var(--grain); mix-blend-mode:multiply; opacity:.25; pointer-events:none}
+.job-num{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; display:flex; justify-content:space-between; gap:8px}
+.job-top h3{margin:6px 0 0; font-size:28px; font-weight:500; line-height:.95; letter-spacing:-.01em}
+.job-dir{padding:14px 20px 0; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+.job-dir .k{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--dim)}
+.job-dir .v{font-size:22px; font-weight:500; }
+.job dl{margin:0; padding:12px 20px 18px; display:grid; grid-template-columns:96px minmax(0,1fr); gap:7px 12px; font-size:14.5px}
+.job dt{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); padding-top:3px}
+.job dd{margin:0; min-width:0}
+.job .money{font-family:var(--mono); font-size:13.5px; color:var(--butter)}
+.job .story{margin:0; padding:0 20px 18px; color:var(--dim); font-size:14px}
+.minijobs{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:12px; margin-top:16px}
+.mini{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:3px; min-width:0}
+.mini .t{font-weight:500; font-size:17px; line-height:1.1}
+.mini .dr{font-weight:500}
+.mini .m{font-family:var(--mono); font-size:11.5px; color:var(--dim)}
+
+/* places */
+.places{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:12px}
+.place{border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:4px; min-width:0}
+.place .city{font-size:26px; font-weight:500; line-height:1}
+.place .spot{font-weight:400}
+.place .m{font-family:var(--mono); font-size:11.5px; color:var(--dim)}
+.place.next{border-style:dashed}
+
+/* bars */
+.bars{display:flex; flex-direction:column; gap:12px}
+.bar-row{display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr) auto; gap:12px; align-items:center}
+.bar-row .nm{font-weight:500; font-size:15px; line-height:1.15}
+.bar-row .nm small{display:block; font-weight:500; color:var(--dim); font-size:12.5px}
+.bar-row .tr{height:16px; background:#0000000f; border-radius:4px; position:relative; overflow:hidden}
+.bar-row .tr i{position:absolute; inset:0 auto 0 0; background:var(--c); border-radius:4px}
+.bar-row .tr i.rng{background:repeating-linear-gradient(90deg, var(--c) 0 4px, transparent 4px 7px); opacity:.6}
+.bar-row .v{font-family:var(--mono); font-size:13px; white-space:nowrap; font-variant-numeric:tabular-nums}
+
+.stack{display:flex; height:28px; border-radius:6px; overflow:hidden; gap:2px}
+.stack i{display:block; background:var(--c)}
+.legend{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px; font-size:14px}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.legend span::before{content:""; width:10px; height:10px; border-radius:3px; background:var(--c)}
+.legend b{font-family:var(--mono); font-weight:500}
+
+.board{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px}
+.board li{display:grid; grid-template-columns:34px minmax(0,1fr) auto; gap:4px 12px; align-items:center}
+.board .r{font-family:var(--mono); font-size:13px; color:var(--dim)}
+.board li:nth-child(1) .r{color:var(--butter)}
+.board .nm{font-weight:500; font-size:17px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.board .ct{font-family:var(--mono); font-size:12px; color:var(--dim); text-align:right; white-space:nowrap}
+.board .bar{grid-column:2/-1; display:flex; height:10px; gap:2px}
+.board .bar .w{background:var(--pink); border-radius:3px}
+.board .bar .b{border:1.5px solid var(--pink); border-radius:3px; opacity:.7}
+.keyline{display:flex; gap:16px; font-family:var(--mono); font-size:11.5px; color:var(--dim); margin:-8px 0 16px}
+.keyline span{display:inline-flex; gap:6px; align-items:center}
+.keyline i{width:14px; height:8px; border-radius:2px; display:inline-block}
+
+.list{list-style:none; margin:0; padding:0}
+.list li{display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px solid var(--line); align-items:baseline}
+.list li:first-child{border-top:0}
+.list .t{font-weight:500; min-width:0}
+.list .t small{display:block; font-weight:500; color:var(--dim); font-size:13px}
+.list .v{font-family:var(--mono); font-size:13px; white-space:nowrap; font-variant-numeric:tabular-nums; text-align:right}
+
+.people{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px}
+.person{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:4px; min-width:0}
+.person .award{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--c)}
+.person .nm{font-size:21px; font-weight:500; line-height:1.05}
+.person .m{font-size:13.5px; color:var(--dim)}
+
+.faces{display:flex; flex-wrap:wrap; gap:10px}
+.face{border-radius:999px; padding:9px 16px; font-weight:500; font-size:16px; border:1.5px solid var(--fg)}
+.face.won{background:var(--butter); color:var(--ink); border-color:var(--butter)}
+.face small{font-family:var(--mono); font-weight:500; font-size:11px; opacity:.7; margin-left:6px}
+
+.facts{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:12px}
+.fact{border-left:3px solid var(--c); padding:4px 0 4px 14px}
+.fact .big{font-size:34px; font-weight:500; line-height:1}
+.fact p{margin:4px 0 0; color:var(--dim); font-size:14px}
+
+.tablebox{overflow-x:auto; border:1px solid var(--line); border-radius:16px; background:var(--panel)}
+table{border-collapse:collapse; width:100%; min-width:960px; font-size:14px}
+th{font-family:var(--mono); font-weight:500; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); text-align:left; padding:14px 14px 10px; border-bottom:1px solid var(--line); white-space:nowrap}
+td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.p{font-weight:500; font-size:15px}
+td.dir{font-weight:500; color:var(--pink)}
+td.m{font-family:var(--mono); font-size:12.5px; color:var(--dim); white-space:nowrap}
+td.d{color:var(--dim)}
+.chip{display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:.04em; padding:3px 9px; border-radius:999px; background:var(--c); color:var(--ink); white-space:nowrap}
+.chip.ghost{background:transparent; color:var(--dim); border:1px solid var(--line)}
+tr.hot td.p::before{content:"● "; color:var(--teal)}
+
+footer{padding-block:56px 64px; color:var(--dim); font-size:14px}
+footer p{max-width:76ch; margin:0 0 8px}
+footer ul{margin:8px 0 14px; padding-left:18px; max-width:76ch}
+
+.tr2{display:flex; gap:2px; height:16px}
+.tr2 i{display:block; border-radius:3px; min-width:0}
+.tr2 i.w{background:var(--fg)}
+.tr2 i.o{border:1.5px solid var(--fg)}
+@media (max-width:560px){ .tr2{grid-column:1/-1; grid-row:2} }
+
+.funnel{display:flex; flex-direction:column; gap:8px; margin:0 0 4px}
+.fstep{width:max(var(--w), 260px); max-width:100%; display:grid; grid-template-columns:auto 1fr; gap:0 14px; align-items:baseline; padding:14px 18px; border:1px solid var(--fg); border-radius:12px; background:var(--bg)}
+.fstep.won{background:var(--fg); color:#fff}
+.fstep .fn{grid-row:span 2; font-size:40px; font-weight:500; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums}
+.fstep .fl{font-weight:500; font-size:17px}
+.fstep .fs{font-size:13px; opacity:.7}
+
+/* RadicalMedia monochrome overrides */
+.tile{background:var(--panel); color:var(--fg)}
+.tile:first-child{background:var(--fg); color:#fff}
+.tile::after,.job-top::after{content:none}
+.job-top{background:var(--fg)!important; color:#fff}
+.kind{background:transparent!important; color:var(--fg); border:1px solid var(--fg); font-weight:500}
+.chip{background:transparent!important; color:var(--fg); border:1px solid var(--fg)}
+.chip.ghost{border-color:var(--line); color:var(--dim)}
+.month h3{color:var(--fg)!important}
+.person .award{color:var(--dim)!important}
+.fact{border-left-color:var(--fg)!important}
+.face{border-color:var(--fg)}
+.face.won{background:var(--fg); color:#fff}
+td.dir{color:var(--fg); font-weight:500}
+.job .money{color:var(--fg); font-weight:500}
+.board li:nth-child(1) .r{color:var(--fg); font-weight:500}
+tr.hot td.p::before{color:var(--fg)}
+.panel{background:var(--bg); border-color:var(--fg)}
+.job{background:var(--bg); border-color:var(--fg)}
+.mini,.person,.place{background:var(--bg); border-color:var(--line)}
+h2{font-weight:500; letter-spacing:-.03em}
+.eyebrow{color:var(--fg); font-weight:500}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr; gap:48px}
+  .sharecard{transform:rotate(1deg); margin-inline:6px}
+  .two, .jobs{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .month{grid-template-columns:1fr; gap:10px}
+  .month li{grid-template-columns:78px minmax(0,1fr)}
+  .bar-row{grid-template-columns:1fr auto}
+  .bar-row .tr{grid-column:1/-1; grid-row:2}
+  .job dl{grid-template-columns:82px minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .tablebox{overflow:visible; border:0; background:none}
+  table{min-width:0; display:block}
+  thead{display:none}
+  tbody{display:flex; flex-direction:column; gap:10px}
+  tbody tr{display:grid; grid-template-columns:98px minmax(0,1fr); gap:4px 12px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 16px}
+  td{display:contents; border:0}
+  td::before{content:attr(data-label); font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); padding-top:3px}
+  td.m{white-space:normal}
+  .chip{justify-self:start}
+  td.p{font-size:17px}
+  tr.hot td.p::before{content:attr(data-label); color:var(--teal)}
+  .jump a{font-size:13px; padding:8px 14px}
+  .hero .wrap{padding-block:32px 48px}
+  section{padding-block:44px 4px}
+}
+@media (max-width:420px){ .sharecard{grid-template-columns:1fr} .sharecard h3{max-width:70%} .tile .n{font-size:50px} }
+@media (prefers-reduced-motion: reduce){ .disc{animation:none} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASoAAAAkCAYAAAA+R3frAAAK00lEQVR42u1d33GcThL+2nXv2roEtBkIRyAcgbgItIrAuOru2TgCryMQiuBQBEbv98BG8EMJ/ApF0PegxhohYHpghkWq7SrKZS3Mn55vvunuaQZiZpzkJCc5yZrlEwAQEQe4KiLKiWhHRJv3rigiihV9joko09z3EcCj1Ek2A2P1hDY1U+p6Z3ovfWHxyNgpetpU9M2PTwHbcgHgGsAtgJqI9h+BsE6yqJwTUeQA/gjA2UltqyfaHMBvAFc9P18B+E1E+6WIypQzAF+FsJLTUJ3EQVysz91JXasnqb0YMABwD+AzMxMzE4DP8jcA+CqEtihRmYT1XyI6AeokIcgnPqlr3aECMVgA4D8AKgCJuKgZgARACuBG7rlu3cB/HKnNt0RUM3N5Gr6T2EIIRLRh5sYyCbYSbjjJeiU1LKn/ifv3ZmFi5q14XlfyTPnpiI3OT+N2EqVowgUna2r90sakMvOP4vZ9k/+ed+65OqZFBUiglJmrDzYYGiuxPmHWSWLFwpac1DQJi4sLM1fmzp7h9gHAD+OeP8+4ENU38SmHZCOA2kG/85JYyuz6t28mPDPPmvTiMmwBRNKHEkAzlUDFnfUGENnJ2hh/qmxukEPZG+m3d71+VIuqT2e+QhgGFmODaCaPhU8sjmDFBx6/m+X16cWFqCrFgBQS1S8NE84ZXDJgifwejxGfsO6j1Fkwc6FU/E7834s+pRHRo6zie5eBEEK1TZp8CHxCTDsp42LgnifpbyllNQ4TIZErUuj1IMBR6zWQnI1Z3xLPOAtITomhtzMLBnMX4hICSGXMz0ewuGfmvWO7rVhk5mwEh+0cvLTU02KlnYOlYvF95foRUSFuXiY8Ehm/15DMdFZcMTNDc0kHNWWWnee2Qg4846oBJCNti2TyuZQXyYBZdSSKdtal1FFO7PMewGakz1sAhQe9xp1yNTrJHDA22seR/u3nlj9Q7k767VpeqZkvMuYu5VcOOFFh0TMOzf5HPWW3GCxM7MhvGwCN/C0y72VmBCEqhzLLjoIaD4Bur3xgEKbU0ciqF4SolM+oCHVgsvnU6+5IRFWNYK32SVRGCGBumzMPi3kfFusQRCVY4RBY6cHLv6V9Waf+TH57NVeOTVR5IJJqr7RjVYSoYxZRebAguyCOHIlkypUEIKpSMT7bAWvRRuBqolr5gukdiwFJqr2iTt9NvBcdvEYdy/+PFX1s1y/1tSKOTNyN1FEGBoYzUXmypPr6vO2Y0r6vOhBR5S4rtJSbKtxiFVEFXMzSTpurtWBxgUW8nOiqvyJ47+kJEhzMlLcXEtTWBN4PwrataZ4onjvDc+ZrbQsILi0SLPweIvAsE75QBpin6NXpHTwHKfDyesXQ7l/uuNtX4iUbWlO/VmftBkakeOYnERXMXAve15aYmin7fW/syrW7kzasXBLR1tw8YuZUgucp3r7vdy+W1KuAvAtRRWZew9A9UrmGeO6MgbPJDTN3AZoSUQrgp+XZLfQ5Nk8C1troz1UgcGh3cB6lTY0DkVwObCV35V89u3mp7NzaJncCz3k6zFzIjubQpLnqWRSvLBNLuyOaKQjkINZR2bMw2/SVy8ROHbCYG+237r7NkETRlri76yp931sWF3PTwBzr0gk/ngKdk9wTZd17i5tpM6O1ZnY1EAOJHcxireundfnSnvZsPMW1Motea0UfvLp+nZ2h0fiYMsSwc4jTNQp8bGbuPCYOWNwMbIz4DkNErkHxHjzOwprmOsYrNC0718r785n1XSjblPS1SZg/86wDjRX5oy9vhpkbZt6JpTVHcqxTCsvvsYMl4GLx2VyfdCxfjZlTxZhodP4o86PpqSOHZG57lI3CmMlHfmuWAMXSRHXoMyEtSqpGzPXUk7+fjxGnEMajRz3YXLenoUQ8X0Qz1l/R6zmOIzaiSpTxqYPH7PqDMonT1nZNHCizTP69LKxLztkhnGzMo1hCytLv+u27xCMvJNriB5Ewf/tvrAxi+rQuCoegbOjJ2mYUz7L0DL3Ghn596nUKgTZEdD8SezqXDPuNhUx9TqCmPalUEQ8NOvain9JX7FQIWDMHY2NxaLGy2AbV0kR1K8HzZGjVMF7zaCfNxQKTQ2PhlQsSVe27wM5rSdERLSbtZL1SWlU+3D6bXC40KR+VrlSFcJs87QIWrwkrxzg94VIsgbSHsTMsn0agdemaBdtUegTdsfQ6l6huLUS1sUz4Cu9PtAtUkL6JEZGtcRE71nlUX2WFbxW0x/MhWseYTA0+qBhnU78nkmoDtA+Wxe5ijuv8zqXxjJONuJO3a7W0fR/zkjpMigzATpmzMyT3HkzTD3kqpJDU9Qy9Xh25C8UMgn2vRLVR3rcNYMFfrBkrIY55SWFPwgSAWHxhLUm1x2hUZltkJTifOak3itjAdkHARnPcP3H3rmfq9difkCqUOOrKU4Ajrh88ueM7C1a1ZOENi46Z8m3ycYuVaimseI9RMfNe2flz6LKzn/CccFbMXIVgiXnkCvJYkqg0ZPR7Rh1vsqxX5v7VRHSYsNKHsKYqRbqIhhS2tgWEiGLFmPjEYvoesBIqRrVX3qcx7WPLoW0+XLedksyWkkTxDcQ57WmTbldJUobkE54JQVS+xr6ai0XFa0O+Qx+PY1hZ6mO6oXb9Kk/lPFgSPjUri2ZVviSiZIgQAyRAjr3PBvktG1rtBKy7OeMz5uqu6NuLU9y/EOR7rrF0jFMx57hs10S0H8F9tvQYWMIii3gaQYiqezD7DLFZFRqztYEu4JcT0RsX0yHm5mop2GJzX4mo6boc4j4UCJuUucMKRNy/R4dF4j7gKx25HIfcjCweuWVRvBcLxdafUhbOslNHhuVy+XzOwdW6ft7M0qHTFeTv2oCxxh1oP45aE1FORIUcD/MzQL8KjLyaYMh3oz2ZbBz85cHdvRwy2YWYr1aEgSLQvV25s1lVeP7S924Ai7ViXHJlWOQMz581rzpY/H4E/SdDnovsLC+SzhAy4fMBfvJ3bmVS1XJtxbxWT1Zmzh3eCzzH9G19F0mhC4aHas9vIroTN72ZoteFRGN9+nD7Ugx8vKFDILdEdIuXPC8txh/kGJsN9EchXSwwHjYL70wsvAKvz6JKsGTOVcCjiPdY/viYseNDIqzvhM80QBuqQOV2rwIBjnmZcSZ6NfCspo0c+OjmBq+P3E1WhMV8gbas+piXSnHPQekCzfaxJTh5M6OcQ4BFYg/gl8ciD3j5WOfjEnpdkfuXexiPciZG+uTNoXMSB/01s0xfkiH8aQzbNceoNER1Iav/04yJ+UtRxx8XcCIQnxAoPUHOMbrxAJZ7mRCNBHyTmXq9t9wTLez+hXT70MHIZ09E/4iBY41k3H9NHJudR/zVmBcQv1Ms4rOxEoyoHF4K3UpHHhyJ4wczRxqAmgFQAeIXh/oexGyvA+oqFx3cTQTuF2Z+dSKF6D92tASfAHxT6vVsKbKSvoyRrteXkKWsCM+H1E0h+yd5Nhprl5DVFwdSfMDLibO+8efSjpaEb+QQR5vFe2G+2ztFiJm1SVvOn25WltsYqfixrBZRTxCx/WpvCSO3Y+RT06b0fhZb6kvw9myd3q/eKvpTiUu0napLI0cqxvB7jA9SV66ZoMaXfkf1ap7kqNTr3wD+qdG9QneNImdu4/qssh+jn2W36K+rx0lflR6p42CMdenQJxUWe1IgdkY7zjV9ND5F75U/TPk/yP4KeAgXm3kAAAAASUVORK5CYII=" alt="RadicalMedia" width="298" height="36">
+      <span class="tape">London · Side A · Jan to Nov 2026</span>
+      <h1>London <span>Wrapped</span> <em>2026</em></h1>
+      <p class="lede">We pitched, we won, we shot in six cities. Here's every job, every pitch, every shoot date and every budget London had this year, pressed onto one disc.</p>
+      <p class="asof">As of 9 Nov 2026 · Week 45</p>
+    </div>
+    <aside class="sharecard" aria-label="Year at a glance">
+      <div class="disc" aria-hidden="true"></div>
+      <h3>London's year on repeat</h3>
+      <div><div class="sc-k">Top directors</div><ol id="scDirectors"><li><b>1</b>Dave Meyers</li><li><b>2</b>Marcus Tomlinson</li><li><b>3</b>Josh Cohen</li><li><b>4</b>Hans Emanuel</li><li><b>5</b>Amirah Tajdin</li></ol></div>
+      <div><div class="sc-k">Top clients</div><ol>
+        <li><b>1</b>Depop</li><li><b>2</b>PepsiCo</li><li><b>3</b>Sky</li><li><b>4</b>Issey Miyake</li><li><b>5</b>LEGO</li></ol></div>
+      <div><div class="sc-k">Jobs won</div><div class="sc-big">18</div></div>
+      <div><div class="sc-k">Shoot days logged</div><div class="sc-big">17</div></div>
+      <div><div class="sc-k">Top genre</div><div class="sc-mid">Christmas ads</div></div>
+      <div><div class="sc-k">Your club</div><div class="sc-mid">Famous Faces Society</div></div>
+    </aside>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <div class="wrap">
+    <a href="#numbers">Numbers</a><a href="#timeline">Month by month</a><a href="#jobs">Every job</a><a href="#places">Locations</a><a href="#money">Budgets</a><a href="#who-sent">Who sent us work</a><a href="#directors">Directors</a><a href="#people">Crew</a><a href="#faces">Talent</a><a href="#facts">Odd facts</a><a href="#live">Still live</a><a href="#won-table">Jobs table</a><a href="#boards-table">Pitches table</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="numbers">
+    <div class="eyebrow">The year in numbers</div>
+    <h2>We pitched on 59 projects</h2>
+    <p class="sub">We won 18. The other 41 were pitches we didn't win, and 5 of those are still open.</p>
+    <div class="funnel" aria-label="Pitch funnel">
+      <div class="fstep" style="--w:100%"><span class="fn">59</span><span class="fl">Scripts in</span><span class="fs">Every project an agency or client sent us</span></div>
+      <div class="fstep" style="--w:60%"><span class="fn">36</span><span class="fl">Director put forward</span><span class="fs">18 won, plus 18 pitches with a named director</span></div>
+      <div class="fstep" style="--w:36%"><span class="fn">22+</span><span class="fl">Treatment written</span><span class="fs">All 18 won, plus Beefeater, LEGO She Built That, Mirinda and Soho House</span></div>
+      <div class="fstep won" style="--w:31%"><span class="fn">18</span><span class="fl">Won</span><span class="fs">31% of scripts in</span></div>
+    </div>
+    <p class="note" style="margin:10px 0 22px">Treatments for lost pitches are counted only where one is on the drive or in email, so the real number may be higher.</p>
+    <div class="tiles" id="tiles"><div class="tile" style="--c:var(--cream)"><span class="n">59</span><span class="l">projects pitched</span><span class="s">won + not won</span></div><div class="tile" style="--c:var(--pink)"><span class="n">18</span><span class="l">jobs won</span><span class="s">3 in production now</span></div><div class="tile" style="--c:var(--lilac)"><span class="n">41</span><span class="l">pitches not won</span><span class="s">5 still open</span></div><div class="tile" style="--c:var(--butter)"><span class="n">17</span><span class="l">shoot days logged</span><span class="s">plus 4 pre-light days</span></div><div class="tile" style="--c:var(--teal)"><span class="n">6</span><span class="l">shoot cities</span><span class="s">London, Madrid, Barcelona, Stockholm, Warsaw, Toronto</span></div><div class="tile" style="--c:var(--tang)"><span class="n">£3.67m+</span><span class="l">won budgets logged</span><span class="s">7 jobs with a budget, before overages</span></div><div class="tile" style="--c:var(--lilac)"><span class="n">£17.2k</span><span class="l">overages on finished jobs</span><span class="s">plus £106.7k raised on Depop H1, still pending</span></div><div class="tile" style="--c:var(--cobalt)"><span class="n">31%</span><span class="l">conversion</span><span class="s">won ÷ projects pitched</span></div><div class="tile" style="--c:var(--red)"><span class="n">5</span><span class="l">still live</span><span class="s">3 live, 2 bidding</span></div></div>
+  </section>
+
+  <section id="timeline">
+    <div class="eyebrow">Tracklist in order</div>
+    <h2>The year, month by month</h2>
+    <p class="sub">Every date below comes from a call sheet, schedule, bid letter or job folder on the London drive.</p>
+    <div class="tl">
+      <div class="month" style="--c:var(--teal)"><h3>Jan<small>1 shoot day</small></h3><ul>
+        <li><span class="d">13 Jan</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Habitat × Pinterest, Film 3 (11526)</b>, 109 Manor Road, London N16 · <span>Amirah Tajdin for Drum</span></span></li>
+        <li><span class="d">23 Jan</span><span class="e"><span class="kind" style="--k:var(--teal)">Delivered</span>Habitat × Pinterest teasers delivered · <span>Amirah Tajdin</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--lilac)"><h3>Feb<small>2 jobs open</small></h3><ul>
+        <li><span class="d">2 Feb</span><span class="e"><span class="kind" style="--k:var(--lilac)">Job</span><b>Depop delivery (11531)</b> opens · <span>Austin Peters</span></span></li>
+        <li><span class="d">26–27 Feb</span><span class="e"><span class="kind" style="--k:var(--butter)">Won</span><b>Doritos × Gordon Ramsay (11533)</b> bid in on the 26th, awarded on the 27th · <span>Josh Cohen for PS21</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--pink)"><h3>Mar<small>2 shoot days</small></h3><ul>
+        <li><span class="d">2–6 Mar</span><span class="e"><span class="kind" style="--k:var(--lilac)">Prep</span>Doritos casting and scouting · <span>Josh Cohen</span></span></li>
+        <li><span class="d">4 Mar</span><span class="e"><span class="kind" style="--k:var(--lilac)">Job</span><b>McLaren "Quest" (11534)</b> opens, a service job with RadNY · <span>Wally Pfister</span></span></li>
+        <li><span class="d">12 Mar</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Doritos</b> studio day, Toronto · <span>Josh Cohen</span></span></li>
+        <li><span class="d">22 Mar</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Doritos × F1</b> exterior day, Madrid, with Gordon Ramsay and George Russell · <span>Josh Cohen</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--teal)"><h3>Apr<small>post + new award</small></h3><ul>
+        <li><span class="d">7–10 Apr</span><span class="e"><span class="kind" style="--k:var(--teal)">Post</span>Doritos picture lock, grade and mix · <span>Josh Cohen</span></span></li>
+        <li><span class="d">24 Apr</span><span class="e"><span class="kind" style="--k:var(--butter)">Won</span><b>Heide Park Halloween (11532)</b> awarded, TBWA</span></li>
+        <li><span class="d">30 Apr</span><span class="e"><span class="kind" style="--k:var(--lilac)">Job</span><b>F1 × Sting Energy (11535)</b> folder opens · <span>Hans Emanuel</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--tang)"><h3>May<small>1 shoot day</small></h3><ul>
+        <li><span class="d">4 May</span><span class="e"><span class="kind" style="--k:var(--butter)">Go</span><b>F1 × Sting</b> job go and storyboard kick-off · <span>Hans Emanuel for PepsiCo</span></span></li>
+        <li><span class="d">12 May</span><span class="e"><span class="kind" style="--k:var(--lilac)">Job</span><b>AIG × Georgia Hall (11537)</b> opens with RadNY · <span>Nina Meredith</span></span></li>
+        <li><span class="d">19–20 May</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>F1 × Sting</b> PPM and pre-light, then shoot, Warsaw · <span>Hans Emanuel</span></span></li>
+        <li><span class="d">26 May</span><span class="e"><span class="kind" style="--k:var(--lilac)">Prep</span>Issey Miyake PPM booklet out · <span>Marcus Tomlinson</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--butter)"><h3>Jun<small>7 shoot days</small></h3><ul>
+        <li><span class="d">2–3 Jun</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Issey Miyake (11530)</b> pre-light and shoot, Love High Speed, Wembley · <span>Marcus Tomlinson</span></span></li>
+        <li><span class="d">4 Jun</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>AIG "Forward We Go"</b>, Mill Hill Golf Club · <span>Nina Meredith</span></span></li>
+        <li><span class="d">10 Jun</span><span class="e"><span class="kind" style="--k:var(--teal)">Delivered</span><b>F1 × Sting</b> film delivered · <span>Hans Emanuel</span></span></li>
+        <li><span class="d">13–14 Jun</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>F1 × Sting</b> second shoot, Barcelona · <span>Hans Emanuel</span></span></li>
+        <li><span class="d">16–17 Jun</span><span class="e"><span class="kind" style="--k:var(--lilac)">Prep</span>Thomson Reuters callbacks at Coptic Studios, then scout · <span>Ralf Schmerberg</span></span></li>
+        <li><span class="d">23 Jun</span><span class="e"><span class="kind" style="--k:var(--lilac)">Prep</span>Reuters PPM and fitting, Angels Costumes</span></li>
+        <li><span class="d">24–26 Jun</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Thomson Reuters "The Quiet Radical" (11538)</b>, London, 58–60 crew a day · <span>Ralf Schmerberg</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--cobalt)"><h3>Jul<small>1 shoot day</small></h3><ul>
+        <li><span class="d">5–6 Jul</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Depop × Zara Larsson (11539)</b> pre-light and shoot, Görväln Castle, Stockholm · <span>Dave Meyers</span></span></li>
+        <li><span class="d">27 Jul</span><span class="e"><span class="kind" style="--k:var(--teal)">Post</span>Issey Miyake Lumière Intense offline approved, VFX and grade start · <span>Marcus Tomlinson</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--red)"><h3>Aug<small>prep for Sky</small></h3><ul>
+        <li><span class="d">4–5 Aug</span><span class="e"><span class="kind" style="--k:var(--teal)">Post</span>Issey Miyake Lumière Intense grade and VFX sessions at Framestore · <span>Marcus Tomlinson</span></span></li>
+        <li><span class="d">28 Aug</span><span class="e"><span class="kind" style="--k:var(--lilac)">Prep</span><b>Sky Christmas</b> pre-light, rehearsal and PPM, OMA One Film Studios, Enfield · <span>Dave Meyers</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--pink)"><h3>Sep<small>5 shoot days</small></h3><ul>
+        <li><span class="d">1–4 Sep</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Sky Christmas "Costumes" (11541)</b>, four days at OMA One, Enfield · <span>Dave Meyers</span></span></li>
+        <li><span class="d">4 Sep</span><span class="e"><span class="kind" style="--k:var(--pink)">Shoot</span><b>Sky Christmas socials (11542)</b>, its own shoot day: a B-unit on the same day as Sky shoot day 4 · <span>Remi Laudat</span></span></li>
+        <li><span class="d">21 Sep</span><span class="e"><span class="kind" style="--k:var(--teal)">Wrap</span>Sky socials wrap budget filed</span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--lilac)"><h3>Oct<small>bidding season</small></h3><ul>
+        <li><span class="d">23–29 Oct</span><span class="e"><span class="kind" style="--k:var(--butter)">Bid</span><b>Depop H1</b> Madrid bid, v3 to v4 · <span>Dave Meyers</span></span></li>
+        <li><span class="d">29 Oct</span><span class="e"><span class="kind" style="--k:var(--butter)">Bid</span>Depop × Keke Palmer standalone bid · <span>Dave Meyers</span></span></li>
+      </ul></div>
+      <div class="month" style="--c:var(--teal)"><h3>Nov<small>so far</small></h3><ul>
+        <li><span class="d">1 Nov</span><span class="e"><span class="kind" style="--k:var(--butter)">Bid</span>Depop × Keke Palmer LA bid letter · <span>Dave Meyers</span></span></li>
+        <li><span class="d">4–6 Nov</span><span class="e"><span class="kind" style="--k:var(--butter)">Bid</span>LEGO She Built That bid, 5-day and 6-day versions plus talent · <span>Mia Barnes &amp; Dave Meyers</span></span></li>
+        <li><span class="d">w/c 2 Nov</span><span class="e"><span class="kind" style="--k:var(--teal)">Delivered</span><b>Issey Miyake BB Intense (Lumière Intense)</b> delivered · <span>Marcus Tomlinson</span></span></li>
+        <li><span class="d">14–15 Nov</span><span class="e"><span class="kind" style="--k:var(--tang)">Next</span><b>Depop H1</b> shoots in Madrid, then LA · <span>Dave Meyers</span></span></li>
+        <li><span class="d">10 Dec</span><span class="e"><span class="kind" style="--k:var(--tang)">Next</span>Pepsi Meals × Gordon Ramsay and Doritos (Dec) shoot in London if they land · <span>Josh Cohen</span></span></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="jobs">
+    <div class="eyebrow">Liner notes</div>
+    <h2>Every job, director first</h2>
+    <p class="sub">The won jobs with the most paperwork behind them, then the rest. Crew names come from call sheets and schedules. No phone numbers or emails are shown.</p>
+    <div class="jobs" id="jobCards">
+  <article class="job">
+    <div class="job-top" style="--c:var(--red)"><div class="job-num"><span>JOB 11541</span><span>Post</span></div><h3>Sky Christmas, Costumes</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Dave Meyers</span></div>
+    <dl><dt>Client</dt><dd>Sky Creative</dd><dt>Dates</dt><dd>Pre-light, rehearsal and PPM 28 Aug · shoot 1–4 Sep</dd><dt>Where</dt><dd>OMA One Film Studios, Enfield</dd><dt>Budget</dt><dd class="money">£1.1m</dd><dt>Crew</dt><dd>Producer Ersan Beskardes · PM Reba Gaynor · 1st AD Knoko Chapple · production designer Sarah Asmail · wardrobe designer Selina Wong · gaffer Chris Boomfield · PA Ella Crawford</dd></dl>
+    <p class="story">Four studio days of costumes from across Sky's partners, from Wicked to Game of Thrones. Dave flew in from LA on 28 Aug and home on 5 Sep.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--pink)"><div class="job-num"><span>JOB 11543</span><span>In production</span></div><h3>Depop H1</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Dave Meyers</span></div>
+    <dl><dt>Client</dt><dd>Depop (direct) · Hanna Davis</dd><dt>Dates</dt><dd>Shooting 14–15 Nov, then LA</dd><dt>Where</dt><dd>Madrid exteriors, then Los Angeles</dd><dt>Budget</dt><dd class="money">£1,154,903 bid (prod £922,521 + talent £232,382)</dd><dt>Overages</dt><dd class="money">£106,734.14 raised so far, pending · stylist, weather insurance, Sunday shoot, extra attendee</dd><dt>Scale</dt><dd>2 hero talent, 20 featured dancers, 25 extras · 6 films in 4 ratios</dd><dt>Crew</dt><dd>Producer Ersan Beskardes · LA 1st AD · Europe-based choreographer and DOP</dd></dl>
+    <p class="story">The biggest bid on the books this year, and Dave's fourth Depop job of 2026.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--cobalt)"><div class="job-num"><span>JOB 11539</span><span>Wrapping</span></div><h3>Depop × Zara Larsson</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Dave Meyers</span></div>
+    <dl><dt>Client</dt><dd>Depop (direct) · creative director Nicole Chen · EP Hanna Davis</dd><dt>Dates</dt><dd>Pre-light 5 Jul · shoot 6 Jul</dd><dt>Where</dt><dd>Görväln Castle, Järfälla, Stockholm</dd><dt>Crew</dt><dd>Producer Maggie Curwin · junior producer Ella Crawford · 1st AD Knoko Chapple · DOP Nikita Kuzmenko · photographer Emily Garay White · VFX Alex Lovejoy</dd><dt>Service</dt><dd>Hobby Films, Stockholm</dd><dt>Overages</dt><dd class="money">£5,267.16 · security, nail tech, art dept night and weekend work</dd></dl>
+    <p class="story">Shot on Zara Larsson's tour, at a castle outside Stockholm, under NDA.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--butter)"><div class="job-num"><span>JOB 11533</span><span>Wrapping</span></div><h3>Doritos × Gordon Ramsay</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Josh Cohen</span></div>
+    <dl><dt>Agency</dt><dd>PS21 for PepsiCo · Kane Phillips, Michel de Larroque</dd><dt>Dates</dt><dd>Awarded 27 Feb · studio 12 Mar · exterior 22 Mar · grade 9–10 Apr</dd><dt>Where</dt><dd>Toronto studio, then Calle Retama and Ciudad de la Imagen, Madrid</dd><dt>Budget</dt><dd class="money">£450–500k</dd><dt>Talent</dt><dd>Gordon Ramsay and F1 driver George Russell, with stunt doubles and a precision driver</dd><dt>Crew</dt><dd>Producer Voy Czarkowski · PM Cerys Kenneally · DOP Miguel Carmenes · 1st AD Pedro Outon · service: Falca</dd></dl>
+    <p class="story">Crew call 05:30 in Madrid. Sunny, 6° to 19°.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--lilac)"><div class="job-num"><span>JOB 11538</span><span>Job number only</span></div><h3>Thomson Reuters, The Quiet Radical</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Ralf Schmerberg</span></div>
+    <dl><dt>Client</dt><dd>Thomson Reuters · creative director Simon Bates</dd><dt>Dates</dt><dd>Callbacks 16 Jun · scout 17 Jun · PPM and fitting 23 Jun · shoot 24–26 Jun</dd><dt>Where</dt><dd>London · callbacks at Coptic Studios · fitting at Angels Costumes</dd><dt>Crew size</dt><dd>21 at the fitting, then 58, 60 and 59 on the three shoot days</dd><dt>Overages</dt><dd class="money">£4,834.57 · talent fees and usage, behind-the-scenes operator</dd><dt>Crew</dt><dd>PM Lydia Martland · 1st AD Chris Malin · production designer Sam Storey · stylist Oliver Cronk</dd></dl>
+    <p class="story">Ralf flew in from Berlin twice. Day 2 ran 11:00 to 23:00, and wrap drinks were at The Shoreditch Arms.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--teal)"><div class="job-num"><span>JOB 11530</span><span>Completed</span></div><h3>Issey Miyake BB Intense</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Marcus Tomlinson</span></div>
+    <dl><dt>Agency</dt><dd>McCann Paris · creative director Guillaume Girard</dd><dt>Dates</dt><dd>Pre-light 2 Jun · shoot 3 Jun · post from 27 Jul · delivered w/c 2 Nov</dd><dt>Where</dt><dd>Love High Speed Studio, Wembley</dd><dt>Crew</dt><dd>Producer Ersan Beskardes · post producer Jacob Topen · PM Lydia Martland · 1st AD Ayokunle Delano · DOP Tim Green · production designer Paul Topen · motion control Dennis Henry · VFX Ric Comline</dd><dt>Overages</dt><dd class="money">£1,614.90 · extra offline, producer and Flame days</dd></dl>
+    <p class="story">A motion-control product shoot. Marcus also directed Le Sel Intense (11536) and Fielmann (11529) this year.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--tang)"><div class="job-num"><span>JOB 11537</span><span>Wrapping</span></div><h3>AIG × Georgia Hall, Forward We Go</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Nina Meredith</span></div>
+    <dl><dt>Agency</dt><dd>VML New York · agency producer Morgan Bortka</dd><dt>Dates</dt><dd>Shoot 4 Jun</dd><dt>Where</dt><dd>Mill Hill Golf Club, London NW7</dd><dt>Crew</dt><dd>UK producer Jake River Parker · PM Emily Mulkerrins · 1st AD Peter Freeman · DOP Ula Pontikos · production designer Agnieszka Dębska · US EPs Rebecca Niles and Jim Bouvet</dd><dt>Kit</dt><dd>Motion control and Phantom high-speed · 56 crew on the call sheet</dd></dl>
+    <p class="story">Golfer Georgia Hall, a mum and two babies (one hero, one backup). Breakfast from 05:00.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--pink)"><div class="job-num"><span>JOB 11535</span><span>Wrapping</span></div><h3>F1 × Sting Energy</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Hans Emanuel</span></div>
+    <dl><dt>Agency</dt><dd>PepsiCo · Oli Featherman</dd><dt>Dates</dt><dd>Job go 4 May · PPM and pre-light 19 May · shoot 20 May · delivered 10 Jun · second shoot 13–14 Jun</dd><dt>Where</dt><dd>Warsaw, then Barcelona</dd><dt>Crew</dt><dd>Producer Ash Horne</dd></dl>
+    <p class="story">First planned for London on 14 May, then moved to Warsaw with a new shot list and budget.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--red)"><div class="job-num"><span>JOB 11542</span><span>Post</span></div><h3>Sky Christmas socials</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Remi Laudat</span></div>
+    <dl><dt>Client</dt><dd>Sky Creative · Lucy Patrick Ward</dd><dt>Dates</dt><dd>Treatment in August · shoot 4 Sep</dd><dt>Where</dt><dd>London, on a B-unit stage the same day as Sky shoot day 4</dd><dt>Budget</dt><dd class="money">£130k</dd><dt>Content</dt><dd>Costume dance-offs with whip pans, plus a one-take costume match-cut: Wicked, Bridgerton, Game of Thrones, Rivals, Below Deck and Premier League kits</dd></dl>
+    <p class="story">Its own job and its own shoot, with dancers and a choreographer on a separate stage while the main Sky film shot next door.</p>
+  </article>
+  <article class="job">
+    <div class="job-top" style="--c:var(--teal)"><div class="job-num"><span>JOB 11526</span><span>Completed</span></div><h3>Habitat × Pinterest, Film 3</h3></div>
+    <div class="job-dir"><span class="k">Director</span><span class="v">Amirah Tajdin</span></div>
+    <dl><dt>Agency</dt><dd>Drum · Su Mei Lee</dd><dt>Dates</dt><dd>Shoot 13 Jan · teasers delivered 23 Jan</dd><dt>Where</dt><dd>109 Manor Road, London N16</dd><dt>Budget</dt><dd class="money">£47.2k, plus £5,478.56 in overages</dd><dt>Crew</dt><dd>Producer Ella Crawford · DOP Courtney Bennett · 1st AD Kitty Rajakulasingam · location manager Rupert Bowkett</dd></dl>
+    <p class="story">A hostess, her mum's table-setting rules and a burnt pie, all shot in one day, with social cut-downs captured on the same day.</p>
+  </article></div>
+    <div class="minijobs" id="miniJobs"><div class="mini"><span class="t">Depop × Keke Palmer</span><span class="dr">Dave Meyers</span><span class="m">LA · £700–800k · bid 29 Oct and 1 Nov</span></div><div class="mini"><span class="t">Xbox × Kenji</span><span class="dr">Kai Hoshino Sandy</span><span class="m">Tokyo · £90k · in production</span></div><div class="mini"><span class="t">Issey Miyake Le Sel Intense</span><span class="dr">Marcus Tomlinson</span><span class="m">11536 · director fee / consult · completed</span></div><div class="mini"><span class="t">Depop</span><span class="dr">Austin Peters</span><span class="m">11531 · delivery job · produced by Ersan</span></div><div class="mini"><span class="t">Fielmann</span><span class="dr">Marcus Tomlinson</span><span class="m">11529 · Laughlin Constable · completed</span></div><div class="mini"><span class="t">McLaren, Quest</span><span class="dr">Wally Pfister</span><span class="m">11534 · Deloitte · RadNY service · completed</span></div><div class="mini"><span class="t">High Fade, music film</span><span class="dr">Danny Seth</span><span class="m">Idris Elba · long-term</span></div><div class="mini"><span class="t">Biotherm</span><span class="dr">Director TBC</span><span class="m">McCann Paris · Mathieu Vieille · long-term</span></div></div>
+  </section>
+
+  <section id="places">
+    <div class="eyebrow">World tour</div>
+    <h2>Where we shot</h2>
+    <p class="sub">Six cities with confirmed shoot days, plus two still to come.</p>
+    <div class="places">
+      <div class="place"><span class="m">London · 11 shoot days</span><span class="city">London</span><span class="spot">OMA One Film Studios, Enfield</span><span class="m">Sky Christmas · 1–4 Sep, plus the socials shoot on 4 Sep</span><span class="spot">109 Manor Road, N16</span><span class="m">Habitat × Pinterest · 13 Jan</span><span class="spot">Love High Speed Studio, Wembley</span><span class="m">Issey Miyake · 2–3 Jun</span><span class="spot">Mill Hill Golf Club, NW7</span><span class="m">AIG · 4 Jun</span><span class="spot">Reuters locations, plus Angels Costumes NW9</span><span class="m">Thomson Reuters · 23–26 Jun</span></div>
+      <div class="place"><span class="m">Spain · 3 shoot days</span><span class="city">Madrid + Barcelona</span><span class="spot">Calle Retama and Ciudad de la Imagen, Madrid</span><span class="m">Doritos × F1 · 22 Mar</span><span class="spot">Barcelona</span><span class="m">F1 × Sting · 13–14 Jun</span></div>
+      <div class="place"><span class="m">Sweden · 1 shoot day</span><span class="city">Stockholm</span><span class="spot">Görväln Castle, Järfälla</span><span class="m">Depop × Zara Larsson · 5–6 Jul · service: Hobby Films</span></div>
+      <div class="place"><span class="m">Poland · 1 shoot day</span><span class="city">Warsaw</span><span class="spot">Set build and pre-light on the 19th</span><span class="m">F1 × Sting · 20 May</span></div>
+      <div class="place"><span class="m">Canada · 1 shoot day</span><span class="city">Toronto</span><span class="spot">Studio day</span><span class="m">Doritos × Gordon Ramsay · 12 Mar</span></div>
+      <div class="place next"><span class="m">Coming up</span><span class="city">Madrid · LA · Tokyo</span><span class="spot">Depop H1, then Keke Palmer in LA</span><span class="m">14–15 Nov onward</span><span class="spot">Xbox × Kenji in Tokyo</span><span class="m">In production</span></div>
+    </div>
+  </section>
+
+  <section id="money">
+    <div class="eyebrow">Biggest hits</div>
+    <h2>Budgets</h2>
+    <p class="sub">Won budgets come from the jobs sheet and the Depop H1 bid letter. Only some jobs have a figure logged, so treat totals as a floor.</p>
+    <div class="two">
+      <div class="panel">
+        <h3>Won jobs with a budget</h3>
+        <p class="note">£3.67m–£3.82m across 7 jobs, before overages. A striped bar is the top of a range.</p>
+        <div class="bars" id="wonBars">
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Depop H1<small>Dave Meyers · bid v4</small></span>
+    <span class="tr"><i style="width:100%"></i></span>
+    <span class="v">£1.15m</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Sky Christmas<small>Dave Meyers</small></span>
+    <span class="tr"><i style="width:95.24609426073012%"></i></span>
+    <span class="v">£1.1m</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Depop × Keke Palmer<small>Dave Meyers</small></span>
+    <span class="tr"><i class="rng" style="width:69.26988673507644%"></i><i style="width:60.6111508931919%"></i></span>
+    <span class="v">£700–800k</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Doritos × Gordon Ramsay<small>Josh Cohen</small></span>
+    <span class="tr"><i class="rng" style="width:43.293679209422784%"></i><i style="width:38.9643112884805%"></i></span>
+    <span class="v">£450–500k</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Sky Christmas socials<small>Remi Laudat</small></span>
+    <span class="tr"><i style="width:11.256356594449922%"></i></span>
+    <span class="v">£130k</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Xbox × Kenji<small>Kai Hoshino Sandy</small></span>
+    <span class="tr"><i style="width:7.792862257696101%"></i></span>
+    <span class="v">£90k</span></div>
+    <div class="bar-row" style="--c:var(--butter)"><span class="nm">Habitat × Pinterest<small>Amirah Tajdin · plus £5.5k overages</small></span>
+    <span class="tr"><i style="width:4.086923317369511%"></i></span>
+    <span class="v">£47.2k</span></div></div>
+      </div>
+      <div class="panel">
+        <h3>The ones that got away</h3>
+        <p class="note">Biggest pitches we lost</p>
+        <div class="bars" id="lostBars">
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">Depop<small>Reynald Gresset</small></span>
+    <span class="tr"><i style="width:100%"></i></span>
+    <span class="v">£1.2m</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">Visit Qatar<small>Tarsem · McCann</small></span>
+    <span class="tr"><i style="width:93.75%"></i></span>
+    <span class="v">£1.125m</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">LEGO, The Heist<small>Mia Barnes &amp; Dave Meyers · still live</small></span>
+    <span class="tr"><i style="width:83.33333333333334%"></i></span>
+    <span class="v">£1m+</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">OpenAI<small>Director TBD · DEPT</small></span>
+    <span class="tr"><i class="rng" style="width:54.166666666666664%"></i><i style="width:50%"></i></span>
+    <span class="v">£600–650k</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">Beefeater Gin × Jay Kay<small>Dave Meyers</small></span>
+    <span class="tr"><i class="rng" style="width:52.5%"></i><i style="width:41.66666666666667%"></i></span>
+    <span class="v">£500k + £130k</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">Nike NOCTA<small>Christian Saint</small></span>
+    <span class="tr"><i style="width:33.33333333333333%"></i></span>
+    <span class="v">£400k</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">F&amp;F<small>BBH</small></span>
+    <span class="tr"><i class="rng" style="width:33.33333333333333%"></i><i style="width:29.166666666666668%"></i></span>
+    <span class="v">£350–400k</span></div>
+    <div class="bar-row" style="--c:var(--mute)"><span class="nm">Revolut<small>Matvey Fiks · Anomaly</small></span>
+    <span class="tr"><i style="width:25%"></i></span>
+    <span class="v">£300k</span></div></div>
+        <p class="note" style="margin:16px 0 0">Also closed: Amazon (Joint London), logged as "seven figures".</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <h3>Overages</h3>
+      <p class="note">Extra costs raised on top of the agreed budget</p>
+      <ul class="list">
+        <li><span class="t">Habitat × Pinterest<small>Product swaps, a 3D designer, art department overtime and location costs. Final version after a 25% discount</small></span><span class="v">£5,478.56</span></li>
+        <li><span class="t">Depop × Zara Larsson<small>Security, a nail tech on location and art department night and weekend work</small></span><span class="v">£5,267.16</span></li>
+        <li><span class="t">Thomson Reuters<small>Talent fees and usage, plus a behind-the-scenes operator. Both signed</small></span><span class="v">£4,834.57</span></li>
+        <li><span class="t">Issey Miyake BB Intense<small>Extra offline, producer and Flame days in post</small></span><span class="v">£1,614.90</span></li>
+        <li><span class="t">Total on finished jobs</span><span class="v">£17,195.19</span></li>
+        <li><span class="t">Depop H1 (pending)<small>London stylist, weather insurance, Sunday shooting and an extra Depop attendee. Version 1 quotes, job still in production</small></span><span class="v">£106,734.14</span></li>
+      </ul>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <h3>Inside the biggest bid: Depop H1, Madrid</h3>
+      <p class="note">Firm bid v4, 29 Oct · Dave Meyers · producer Ersan Beskardes</p>
+      <ul class="list">
+        <li><span class="t">Production, including offline<small>Pre-light and dress day, then 2 × 12-hour exterior shoot days in Madrid</small></span><span class="v">£922,521</span></li>
+        <li><span class="t">Talent<small>2 hero talent, 20 featured dancers and 25 extras, with 3 rehearsal days each</small></span><span class="v">£232,382</span></li>
+        <li><span class="t">Total<small>Excluding VAT, music and VO</small></span><span class="v">£1,154,903</span></li>
+        <li><span class="t">Deliverables<small>2 × 30", 2 × 20" and 2 × 15" in 16:9, 9:16, 1:1 and 4:5</small></span><span class="v">6 films</span></li>
+        <li><span class="t">Crew and kit<small>LA 1st AD, a Europe-based choreographer for 9 prep days, an Alexa Mini, Steadicam and a Technocrane</small></span><span class="v">12 offline days</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="who-sent">
+    <div class="eyebrow">Top fans</div>
+    <h2>Who sent us the most work</h2>
+    <p class="sub">Every project that came in this year, won or not, counted by the person who sent it and the company they work for. A solid bar is a project we won. An outlined bar is one we didn't, or one that's still open.</p>
+    <div class="two">
+      <div class="panel">
+        <h3>People</h3>
+        <p class="note">Agency and client contacts with two or more projects</p>
+        <div class="bars">
+          <div class="bar-row"><span class="nm">Kane Phillips<small>PepsiCo · Doritos, Pepsi Meals, Pepsi Football, SodaStream</small></span><span class="tr2"><i class="w" style="flex:1"></i><i class="o" style="flex:4"></i><i style="flex:0"></i></span><span class="v">5 sent · 1 won</span></div>
+          <div class="bar-row"><span class="nm">Hanna Davis<small>Depop · Zara Larsson, H1, Keke Palmer</small></span><span class="tr2"><i class="w" style="flex:3"></i><i class="o" style="flex:1"></i><i style="flex:1"></i></span><span class="v">4 sent · 3 won</span></div>
+          <div class="bar-row"><span class="nm">Oli Featherman<small>PepsiCo · F1 × Sting, Mirinda</small></span><span class="tr2"><i class="w" style="flex:1"></i><i class="o" style="flex:1"></i><i style="flex:3"></i></span><span class="v">2 sent · 1 won</span></div>
+          <div class="bar-row"><span class="nm">Alex Davis<small>LEGO · The Heist (still open), She Built That</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:3"></i></span><span class="v">2 sent</span></div>
+          <div class="bar-row"><span class="nm">Nicola Turek<small>Anomaly · Blacklane, Sky Bet</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:3"></i></span><span class="v">2 sent</span></div>
+          <div class="bar-row"><span class="nm">Jacob Gardiner<small>Craft WW / McCann · Mayor of London, Newcastle United</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:3"></i></span><span class="v">2 sent</span></div>
+          <div class="bar-row"><span class="nm">Sarah Hall<small>Omnicom · PwC, Nurofen</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:3"></i></span><span class="v">2 sent</span></div>
+        </div>
+        <p class="note" style="margin:16px 0 0">Another 21 people sent us one project each.</p>
+      </div>
+      <div class="panel">
+        <h3>Companies</h3>
+        <p class="note">Agencies and brands that came to us directly, grouped by network</p>
+        <div class="bars">
+          <div class="bar-row"><span class="nm">McCann network<small>Paris, London, Craft WW, Omnicom</small></span><span class="tr2"><i class="w" style="flex:3"></i><i class="o" style="flex:6"></i></span><span class="v">9 sent · 3 won</span></div>
+          <div class="bar-row"><span class="nm">PepsiCo<small>Direct, plus Doritos via PS21</small></span><span class="tr2"><i class="w" style="flex:2"></i><i class="o" style="flex:6"></i><i style="flex:1"></i></span><span class="v">8 sent · 2 won</span></div>
+          <div class="bar-row"><span class="nm">Depop<small>Direct</small></span><span class="tr2"><i class="w" style="flex:4"></i><i class="o" style="flex:1"></i><i style="flex:4"></i></span><span class="v">5 sent · 4 won</span></div>
+          <div class="bar-row"><span class="nm">Anomaly<small>Revolut, Blacklane, Sky Bet</small></span><span class="tr2"><i class="o" style="flex:3"></i><i style="flex:6"></i></span><span class="v">3 sent</span></div>
+          <div class="bar-row"><span class="nm">Sky Creative<small>Christmas film and socials</small></span><span class="tr2"><i class="w" style="flex:2"></i><i style="flex:7"></i></span><span class="v">2 sent · 2 won</span></div>
+          <div class="bar-row"><span class="nm">LEGO<small>Direct</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:7"></i></span><span class="v">2 sent · 1 open</span></div>
+          <div class="bar-row"><span class="nm">Mother<small>Hotels.com × Arsenal, Project Manatee</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:7"></i></span><span class="v">2 sent · 1 open</span></div>
+          <div class="bar-row"><span class="nm">Leo Burnett<small>Vodafone, McDonald's</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:7"></i></span><span class="v">2 sent · 1 open</span></div>
+          <div class="bar-row"><span class="nm">Lucky Generals<small>Beefeater, George</small></span><span class="tr2"><i class="o" style="flex:2"></i><i style="flex:7"></i></span><span class="v">2 sent</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="facts" style="margin-top:20px">
+      <div class="fact" style="--c:var(--fg)"><div class="big">Kane Phillips</div><p>Sent us more projects than anyone: five from PepsiCo. We won one of them, Doritos.</p></div>
+      <div class="fact" style="--c:var(--fg)"><div class="big">3 of 4</div><p>Our best record with one person: Hanna Davis at Depop. Three of her four projects became jobs.</p></div>
+      <div class="fact" style="--c:var(--fg)"><div class="big">Anomaly</div><p>Sent us three projects and we haven't landed one yet. The best company to go after next.</p></div>
+      <div class="fact" style="--c:var(--fg)"><div class="big">28</div><p>Different people sent us work this year. Most sent one project, so a second one is worth chasing.</p></div>
+    </div>
+  </section>
+
+  <section id="directors">
+    <div class="eyebrow">Top artists</div>
+    <h2>Directors on heavy rotation</h2>
+    <p class="sub">Every director we put forward this year, on a job we won or a pitch we didn't. Ranked by jobs won, then by other pitches. A pitch with two directors counts for both.</p>
+    <div class="two">
+      <div class="panel">
+        <h3>Director leaderboard</h3>
+        <p class="note" id="dirNote">All 21 directors we pitched this year.</p>
+        <div class="keyline"><span><i style="background:var(--pink)"></i>Won</span><span><i style="border:1.5px solid var(--pink)"></i>Pitched, not won</span></div>
+        <ol class="board" id="dirBoard">
+  <li><span class="r">01</span><span class="nm">Dave Meyers</span>
+  <span class="ct">4 won · 5 not won</span>
+  <span class="bar"><i class="w" style="width:44.44444444444444%"></i><i class="b" style="width:55.55555555555556%"></i></span></li>
+  <li><span class="r">02</span><span class="nm">Marcus Tomlinson</span>
+  <span class="ct">3 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:33.33333333333333%"></i></span></li>
+  <li><span class="r">03</span><span class="nm">Josh Cohen</span>
+  <span class="ct">1 won · 2 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i><i class="b" style="width:22.22222222222222%"></i></span></li>
+  <li><span class="r">04</span><span class="nm">Hans Emanuel</span>
+  <span class="ct">1 won · 1 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">05</span><span class="nm">Amirah Tajdin</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">06</span><span class="nm">Austin Peters</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">07</span><span class="nm">Danny Seth</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">08</span><span class="nm">Kai Hoshino Sandy</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">09</span><span class="nm">Nina Meredith</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">10</span><span class="nm">Ralf Schmerberg</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">11</span><span class="nm">Remi Laudat</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">12</span><span class="nm">Wally Pfister</span>
+  <span class="ct">1 won · 0 not won</span>
+  <span class="bar"><i class="w" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">13</span><span class="nm">Mia Barnes</span>
+  <span class="ct">0 won · 3 not won</span>
+  <span class="bar"><i class="b" style="width:33.33333333333333%"></i></span></li>
+  <li><span class="r">14</span><span class="nm">Sharon Chetrit</span>
+  <span class="ct">0 won · 2 not won</span>
+  <span class="bar"><i class="b" style="width:22.22222222222222%"></i></span></li>
+  <li><span class="r">15</span><span class="nm">Christian Saint</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">16</span><span class="nm">Daniel Askill</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">17</span><span class="nm">Duncan Winecoff</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">18</span><span class="nm">Keane Shaw</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">19</span><span class="nm">Matvey Fiks</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">20</span><span class="nm">Reynald Gresset</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li>
+  <li><span class="r">21</span><span class="nm">Tarsem</span>
+  <span class="ct">0 won · 1 not won</span>
+  <span class="bar"><i class="b" style="width:11.11111111111111%"></i></span></li></ol>
+      </div>
+      <div class="panel">
+        <h3>Who shot what</h3>
+        <p class="note">Won jobs, by director</p>
+        <ul class="list" id="dirJobs"><li><span class="t">Dave Meyers<small>Depop H1 · Depop × Keke Palmer · Sky Christmas, Costumes · Depop × Zara Larsson</small></span><span class="v">4 won</span></li><li><span class="t">Marcus Tomlinson<small>Issey Miyake BB Intense · Issey Miyake Le Sel Intense · Fielmann</small></span><span class="v">3 won</span></li><li><span class="t">Josh Cohen<small>Doritos × Gordon Ramsay</small></span><span class="v">1 won</span></li><li><span class="t">Hans Emanuel<small>F1 × Sting Energy</small></span><span class="v">1 won</span></li><li><span class="t">Amirah Tajdin<small>Habitat × Pinterest, Film 3</small></span><span class="v">1 won</span></li><li><span class="t">Austin Peters<small>Depop</small></span><span class="v">1 won</span></li><li><span class="t">Danny Seth<small>High Fade, music film (Idris Elba)</small></span><span class="v">1 won</span></li><li><span class="t">Kai Hoshino Sandy<small>Xbox × Kenji</small></span><span class="v">1 won</span></li><li><span class="t">Nina Meredith<small>AIG × Georgia Hall, Forward We Go</small></span><span class="v">1 won</span></li><li><span class="t">Ralf Schmerberg<small>Thomson Reuters, The Quiet Radical</small></span><span class="v">1 won</span></li><li><span class="t">Remi Laudat<small>Sky Christmas socials</small></span><span class="v">1 won</span></li><li><span class="t">Wally Pfister<small>McLaren, Quest</small></span><span class="v">1 won</span></li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="people">
+    <div class="eyebrow">Credits</div>
+    <h2>The London crew</h2>
+    <p class="sub">The names that come up on the most call sheets and schedules this year.</p>
+    <div class="people">
+      <div class="person" style="--c:var(--butter)"><span class="award">On every call sheet</span><span class="nm">Ben Schneider</span><span class="m">Executive producer and MD on Issey Miyake, AIG, Depop × Zara Larsson and Sky Christmas</span></div>
+      <div class="person" style="--c:var(--pink)"><span class="award">Most-booked producer</span><span class="nm">Ersan Beskardes</span><span class="m">Producer on Issey Miyake, Sky Christmas, Depop (Austin Peters), Reuters and the Depop H1 and Keke Palmer bids</span></div>
+      <div class="person" style="--c:var(--teal)"><span class="award">Most call sheets</span><span class="nm">Ella Crawford</span><span class="m">Producer on Habitat, and junior producer, coordinator or PA on Issey Miyake, AIG, Depop × Zara Larsson and Sky Christmas</span></div>
+      <div class="person" style="--c:var(--lilac)"><span class="award">Most-booked 1st AD</span><span class="nm">Knoko Chapple</span><span class="m">Flew in from LA for Depop × Zara Larsson in Stockholm and Sky Christmas in Enfield</span></div>
+      <div class="person" style="--c:var(--tang)"><span class="award">Production manager, twice</span><span class="nm">Lydia Martland</span><span class="m">PM on Issey Miyake and Thomson Reuters</span></div>
+      <div class="person" style="--c:var(--cobalt)"><span class="award">Producers</span><span class="nm">Maggie Curwin · Jake River Parker · Ash Horne</span><span class="m">Depop × Zara Larsson · AIG · F1 × Sting</span></div>
+    </div>
+  </section>
+
+  <section id="faces">
+    <div class="eyebrow">Featured artists</div>
+    <h2>Famous faces</h2>
+    <p class="sub">Talent on jobs we won, plus names on pitches still open.</p>
+    <div class="faces">
+      <span class="face won">Gordon Ramsay<small>Doritos</small></span>
+      <span class="face won">George Russell<small>Doritos × F1</small></span>
+      <span class="face won">Zara Larsson<small>Depop</small></span>
+      <span class="face won">Keke Palmer<small>Depop</small></span>
+      <span class="face won">Idris Elba<small>High Fade</small></span>
+      <span class="face won">Georgia Hall<small>AIG</small></span>
+      <span class="face won">Kenji<small>Xbox</small></span>
+      <span class="face">Gordon Ramsay, again<small>Pepsi Meals · bidding</small></span>
+      <span class="face">Colman Domingo<small>Mother · live</small></span>
+      <span class="face">Ant &amp; Dec<small>Santander</small></span>
+      <span class="face">Jay Kay<small>Beefeater Gin</small></span>
+    </div>
+    <p class="note" style="margin-top:14px">Filled = won. Outline = pitched, not won yet.</p>
+  </section>
+
+  <section id="facts">
+    <div class="eyebrow">Hidden tracks</div>
+    <h2>Odd facts from the paperwork</h2>
+    <div class="facts">
+      <div class="fact" style="--c:var(--butter)"><div class="big">05:00</div><p>Earliest breakfast of the year: AIG at Mill Hill Golf Club, with main unit called at 06:00.</p></div>
+      <div class="fact" style="--c:var(--pink)"><div class="big">23:00</div><p>Latest planned wrap: Reuters shoot day 2, which started at 11:00.</p></div>
+      <div class="fact" style="--c:var(--teal)"><div class="big">60</div><p>Biggest crew day: Thomson Reuters shoot day 2, with 58 and 59 on the days either side.</p></div>
+      <div class="fact" style="--c:var(--lilac)"><div class="big">8</div><p>Shows dressed up for Sky's Christmas costume dance-offs, including Wicked, Bridgerton, Game of Thrones, Below Deck and Premier League kits.</p></div>
+      <div class="fact" style="--c:var(--tang)"><div class="big">3</div><p>Down days for Dave Meyers before Sky Christmas, including a massage at the Rosewood and a steel pan competition.</p></div>
+      <div class="fact" style="--c:var(--cobalt)"><div class="big">£8,346</div><p>One villa booking for the Depop × Zara Larsson shoot in Sweden.</p></div>
+      <div class="fact" style="--c:var(--red)"><div class="big">The Shoreditch Arms</div><p>Where Reuters wrap drinks happened, two doors from the office.</p></div>
+      <div class="fact" style="--c:var(--butter)"><div class="big">2</div><p>Stunt drivers on Doritos × F1, standing in for Gordon Ramsay and George Russell in Madrid.</p></div>
+    </div>
+  </section>
+
+  <section id="live">
+    <div class="eyebrow">Still playing</div>
+    <h2>Five pitches still open</h2>
+    <div class="tiles" style="grid-template-columns:repeat(auto-fit, minmax(200px,1fr))">
+      <div class="tile" style="--c:var(--teal)"><span class="s">Live · LEGO direct</span><span class="l">LEGO, The Heist</span><span class="s">Mia Barnes &amp; Dave Meyers · £1m+</span></div>
+      <div class="tile" style="--c:var(--teal)"><span class="s">Live · Leo Burnett</span><span class="l">Vodafone</span><span class="s">Dave Meyers · shooting Jan 2027</span></div>
+      <div class="tile" style="--c:var(--teal)"><span class="s">Live · Mother</span><span class="l">Project Manatee × Colman Domingo</span><span class="s">Director TBC · 2 scripts, London &amp; LA, 2027</span></div>
+      <div class="tile" style="--c:var(--butter)"><span class="s">Bidding · PepsiCo</span><span class="l">Pepsi Meals × Gordon Ramsay</span><span class="s">Josh Cohen · shooting 10 Dec, London</span></div>
+      <div class="tile" style="--c:var(--butter)"><span class="s">Bidding · PepsiCo</span><span class="l">Doritos (December)</span><span class="s">Josh Cohen · London 10 Dec, then Poland</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Where everything stands</div>
+    <h2>Status</h2>
+    <div class="two">
+      <div class="panel"><h3>Jobs won</h3><p class="note">18 jobs</p><div class="stack" id="wonStack"><i style="--c:var(--cobalt); flex:3" title="In production: 3"></i><i style="--c:var(--lilac); flex:2" title="Post: 2"></i><i style="--c:var(--pink); flex:5" title="Wrapping: 5"></i><i style="--c:var(--teal); flex:5" title="Completed: 5"></i><i style="--c:var(--butter); flex:2" title="Ongoing: 2"></i><i style="--c:var(--mute); flex:1" title="Job number only: 1"></i></div><div class="legend" id="wonLegend"><span style="--c:var(--cobalt)">In production <b>3</b></span><span style="--c:var(--lilac)">Post <b>2</b></span><span style="--c:var(--pink)">Wrapping <b>5</b></span><span style="--c:var(--teal)">Completed <b>5</b></span><span style="--c:var(--butter)">Ongoing <b>2</b></span><span style="--c:var(--mute)">Job number only <b>1</b></span></div></div>
+      <div class="panel"><h3>Pitches not won</h3><p class="note">41 pitches</p><div class="stack" id="boardStack"><i style="--c:var(--teal); flex:3" title="Live: 3"></i><i style="--c:var(--butter); flex:2" title="Bidding: 2"></i><i style="--c:var(--tang); flex:1" title="On hold: 1"></i><i style="--c:var(--mute); flex:30" title="Closed: 30"></i><i style="--c:#0000001f; flex:5" title="Not logged: 5"></i></div><div class="legend" id="boardLegend"><span style="--c:var(--teal)">Live <b>3</b></span><span style="--c:var(--butter)">Bidding <b>2</b></span><span style="--c:var(--tang)">On hold <b>1</b></span><span style="--c:var(--mute)">Closed <b>30</b></span><span style="--c:#0000001f">Not logged <b>5</b></span></div></div>
+    </div>
+  </section>
+
+  <section id="won-table">
+    <div class="eyebrow">Full tracklist · Side A</div>
+    <h2>Every job won</h2>
+    <p class="sub">All 18: the 17 on the Jobs won tab, plus Habitat in January.</p>
+    <div class="tablebox"><table>
+      <thead><tr><th>Job #</th><th>Project</th><th>Director</th><th>Agency</th><th>Shoot dates</th><th>Location</th><th>Budget / notes</th><th>Stage</th></tr></thead>
+      <tbody id="wonBody"><tr>
+  <td class="m" data-label="Job #">11543</td><td class="p" data-label="Project">Depop H1</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Depop (direct)</td>
+  <td class="m" data-label="Shoot dates">14–15 Nov</td><td class="d" data-label="Location">Madrid, then LA</td><td class="d" data-label="Budget / notes">Bid £1,154,903 (prod £922,521 + talent £232,382) · overages £106,734.14 pending</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--cobalt)">In production</span></td></tr><tr>
+  <td class="m" data-label="Job #"><span style="opacity:.35">—</span></td><td class="p" data-label="Project">Depop × Keke Palmer</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Depop (direct)</td>
+  <td class="m" data-label="Shoot dates">TBC</td><td class="d" data-label="Location">Los Angeles</td><td class="d" data-label="Budget / notes">£700–800k</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--cobalt)">In production</span></td></tr><tr>
+  <td class="m" data-label="Job #"><span style="opacity:.35">—</span></td><td class="p" data-label="Project">Xbox × Kenji</td><td class="dir" data-label="Director">Kai Hoshino Sandy</td><td data-label="Agency"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Shoot dates">TBC</td><td class="d" data-label="Location">Tokyo</td><td class="d" data-label="Budget / notes">£90k</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--cobalt)">In production</span></td></tr><tr>
+  <td class="m" data-label="Job #">11541</td><td class="p" data-label="Project">Sky Christmas, Costumes</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Sky Creative</td>
+  <td class="m" data-label="Shoot dates">PPM 28 Aug · shoot 1–4 Sep</td><td class="d" data-label="Location">OMA One Film Studios, Enfield</td><td class="d" data-label="Budget / notes">£1.1m</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--lilac)">Post</span></td></tr><tr>
+  <td class="m" data-label="Job #">11542</td><td class="p" data-label="Project">Sky Christmas socials</td><td class="dir" data-label="Director">Remi Laudat</td><td data-label="Agency">Sky Creative</td>
+  <td class="m" data-label="Shoot dates">4 Sep (own shoot, same day as Sky)</td><td class="d" data-label="Location">London</td><td class="d" data-label="Budget / notes">£130k</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--lilac)">Post</span></td></tr><tr>
+  <td class="m" data-label="Job #">11530</td><td class="p" data-label="Project">Issey Miyake BB Intense</td><td class="dir" data-label="Director">Marcus Tomlinson</td><td data-label="Agency">McCann Paris</td>
+  <td class="m" data-label="Shoot dates">Pre-light 2 Jun · shoot 3 Jun</td><td class="d" data-label="Location">Love High Speed Studio, Wembley</td><td class="d" data-label="Budget / notes">Delivered w/c 2 Nov (Lumière Intense) · overages £1,614.90</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--teal)">Completed</span></td></tr><tr>
+  <td class="m" data-label="Job #">11536</td><td class="p" data-label="Project">Issey Miyake Le Sel Intense</td><td class="dir" data-label="Director">Marcus Tomlinson</td><td data-label="Agency">McCann Paris</td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Director fee / consult</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--teal)">Completed</span></td></tr><tr>
+  <td class="m" data-label="Job #">11539</td><td class="p" data-label="Project">Depop × Zara Larsson</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Depop (direct)</td>
+  <td class="m" data-label="Shoot dates">Pre-light 5 Jul · shoot 6 Jul</td><td class="d" data-label="Location">Görväln Castle, Stockholm</td><td class="d" data-label="Budget / notes">Service: Hobby Films · overages £5,267.16</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--pink)">Wrapping</span></td></tr><tr>
+  <td class="m" data-label="Job #">11531</td><td class="p" data-label="Project">Depop</td><td class="dir" data-label="Director">Austin Peters</td><td data-label="Agency">Depop (direct)</td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Delivery job, produced by Ersan</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--pink)">Wrapping</span></td></tr><tr>
+  <td class="m" data-label="Job #">11533</td><td class="p" data-label="Project">Doritos × Gordon Ramsay</td><td class="dir" data-label="Director">Josh Cohen</td><td data-label="Agency">PS21</td>
+  <td class="m" data-label="Shoot dates">12 Mar · 22 Mar</td><td class="d" data-label="Location">Toronto (studio) · Madrid (ext)</td><td class="d" data-label="Budget / notes">£450–500k</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--pink)">Wrapping</span></td></tr><tr>
+  <td class="m" data-label="Job #">11537</td><td class="p" data-label="Project">AIG × Georgia Hall, Forward We Go</td><td class="dir" data-label="Director">Nina Meredith</td><td data-label="Agency">VML</td>
+  <td class="m" data-label="Shoot dates">4 Jun</td><td class="d" data-label="Location">Mill Hill Golf Club, London</td><td class="d" data-label="Budget / notes">With RadNY</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--pink)">Wrapping</span></td></tr><tr>
+  <td class="m" data-label="Job #">11535</td><td class="p" data-label="Project">F1 × Sting Energy</td><td class="dir" data-label="Director">Hans Emanuel</td><td data-label="Agency">PepsiCo</td>
+  <td class="m" data-label="Shoot dates">20 May · 13–14 Jun</td><td class="d" data-label="Location">Warsaw · Barcelona</td><td class="d" data-label="Budget / notes">Delivered 10 Jun</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--pink)">Wrapping</span></td></tr><tr>
+  <td class="m" data-label="Job #">11529</td><td class="p" data-label="Project">Fielmann</td><td class="dir" data-label="Director">Marcus Tomlinson</td><td data-label="Agency">Laughlin Constable</td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Wrapped, post complete</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--teal)">Completed</span></td></tr><tr>
+  <td class="m" data-label="Job #">11534</td><td class="p" data-label="Project">McLaren, Quest</td><td class="dir" data-label="Director">Wally Pfister</td><td data-label="Agency">Deloitte</td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Service job with RadNY, produced by Stephen Plesniak</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--teal)">Completed</span></td></tr><tr>
+  <td class="m" data-label="Job #">11538</td><td class="p" data-label="Project">Thomson Reuters, The Quiet Radical</td><td class="dir" data-label="Director">Ralf Schmerberg</td><td data-label="Agency">Thomson Reuters (direct)</td>
+  <td class="m" data-label="Shoot dates">PPM 23 Jun · shoot 24–26 Jun</td><td class="d" data-label="Location">London</td><td class="d" data-label="Budget / notes">58–60 crew per shoot day · overages £4,834.57</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--mute)">Job number only</span></td></tr><tr>
+  <td class="m" data-label="Job #"><span style="opacity:.35">—</span></td><td class="p" data-label="Project">Biotherm</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">McCann Paris</td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Long-term</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--butter)">Ongoing</span></td></tr><tr>
+  <td class="m" data-label="Job #"><span style="opacity:.35">—</span></td><td class="p" data-label="Project">High Fade, music film (Idris Elba)</td><td class="dir" data-label="Director">Danny Seth</td><td data-label="Agency"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Shoot dates"><span style="opacity:.35">—</span></td><td class="d" data-label="Location"><span style="opacity:.35">—</span></td><td class="d" data-label="Budget / notes">Long-term</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--butter)">Ongoing</span></td></tr><tr>
+  <td class="m" data-label="Job #">11526</td><td class="p" data-label="Project">Habitat × Pinterest, Film 3</td><td class="dir" data-label="Director">Amirah Tajdin</td><td data-label="Agency">Drum</td>
+  <td class="m" data-label="Shoot dates">13 Jan</td><td class="d" data-label="Location">109 Manor Road, London N16</td><td class="d" data-label="Budget / notes">£47.2k + £5,478.56 overages</td>
+  <td data-label="Stage"><span class="chip" style="--c:var(--teal)">Completed</span></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section id="boards-table">
+    <div class="eyebrow">Full tracklist · Side B</div>
+    <h2>Every pitch we didn't win</h2>
+    <p class="sub">All 41, from the Boards received tab of the London sheet. Enquiries that never became a pitch are left out. A dot marks the ones still open.</p>
+    <div class="tablebox"><table>
+      <thead><tr><th>Project</th><th>Director pitched</th><th>Agency</th><th>Agency contact</th><th>Budget</th><th>Treatment</th><th>Status</th></tr></thead>
+      <tbody id="boardBody"><tr class="hot">
+  <td class="p" data-label="Project">LEGO, The Heist</td><td class="dir" data-label="Director">Mia Barnes &amp; Dave Meyers</td><td data-label="Agency">LEGO (direct)</td><td class="d" data-label="Contact">Alex Davis</td>
+  <td class="m" data-label="Budget">£1m+</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--teal)">Live</span></td></tr><tr class="hot">
+  <td class="p" data-label="Project">Vodafone</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Leo Burnett</td><td class="d" data-label="Contact">Verity Elvin</td>
+  <td class="m" data-label="Budget">Shooting Jan 2027</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--teal)">Live</span></td></tr><tr class="hot">
+  <td class="p" data-label="Project">Pepsi Meals × Gordon Ramsay</td><td class="dir" data-label="Director">Josh Cohen</td><td data-label="Agency">PepsiCo</td><td class="d" data-label="Contact">Kane Phillips</td>
+  <td class="m" data-label="Budget">Shooting 10 Dec, London</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--butter)">Bidding</span></td></tr><tr class="hot">
+  <td class="p" data-label="Project">Doritos (December)</td><td class="dir" data-label="Director">Josh Cohen</td><td data-label="Agency">PepsiCo</td><td class="d" data-label="Contact">Kane Phillips</td>
+  <td class="m" data-label="Budget">London 10 Dec, then Poland</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--butter)">Bidding</span></td></tr><tr class="hot">
+  <td class="p" data-label="Project">Project Manatee × Colman Domingo</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Mother</td><td class="d" data-label="Contact">Rebecca Williams</td>
+  <td class="m" data-label="Budget">2 scripts, London &amp; LA, 2027</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--teal)">Live</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Visit Qatar</td><td class="dir" data-label="Director">Tarsem</td><td data-label="Agency">McCann</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget">£1.125m</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Depop</td><td class="dir" data-label="Director">Reynald Gresset</td><td data-label="Agency">Depop (direct)</td><td class="d" data-label="Contact">Hanna Davis</td>
+  <td class="m" data-label="Budget">£1.2m</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">OpenAI</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">DEPT</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget">£600–650k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Beefeater Gin × Jay Kay</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Lucky Generals</td><td class="d" data-label="Contact">Cordy Grossman</td>
+  <td class="m" data-label="Budget">£500k + £130k post</td><td data-label="Treatment">Yes</td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Nike NOCTA, Marquis</td><td class="dir" data-label="Director">Christian Saint</td><td data-label="Agency">Nike / Pastdown</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget">£400k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Mirinda, Crave</td><td class="dir" data-label="Director">Sharon Chetrit</td><td data-label="Agency">PepsiCo</td><td class="d" data-label="Contact">Olly Featherman</td>
+  <td class="m" data-label="Budget">$400k</td><td data-label="Treatment">Yes</td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">F&amp;F</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">BBH</td><td class="d" data-label="Contact">Kreepa Nesbitt</td>
+  <td class="m" data-label="Budget">£350–400k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Kids audio toy</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Akcelo</td><td class="d" data-label="Contact">Fiona Campbell</td>
+  <td class="m" data-label="Budget">£350k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Revolut</td><td class="dir" data-label="Director">Matvey Fiks</td><td data-label="Agency">Anomaly</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget">£300k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Switch</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency"><span style="opacity:.35">—</span></td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget">£280k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Hotels.com × Arsenal</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Mother</td><td class="d" data-label="Contact">Christine Cheung, Michelle Prinsloo</td>
+  <td class="m" data-label="Budget">£250k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">VW</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">adam&amp;eve</td><td class="d" data-label="Contact">Joel Wilson</td>
+  <td class="m" data-label="Budget">£130–135k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Blacklane</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Anomaly</td><td class="d" data-label="Contact">Nicola Turek</td>
+  <td class="m" data-label="Budget">£90k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Mayor of London, Christmas</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Craft WW / McCann London</td><td class="d" data-label="Contact">Jacob Gardiner</td>
+  <td class="m" data-label="Budget">£50k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">RSPB</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Beetle</td><td class="d" data-label="Contact">Sally Alekna</td>
+  <td class="m" data-label="Budget">£50k</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Amazon</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Joint London</td><td class="d" data-label="Contact">Richard Firminger</td>
+  <td class="m" data-label="Budget">Seven figures</td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Sky Bet</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Anomaly</td><td class="d" data-label="Contact">Nicola Turek</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Pepsi Football</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">PepsiCo</td><td class="d" data-label="Contact">Kane Phillips</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">SodaStream</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">PepsiCo / GUT</td><td class="d" data-label="Contact">Kane Phillips</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">PwC, We're With You</td><td class="dir" data-label="Director">Hans Emanuel</td><td data-label="Agency">Omnicom / McCann</td><td class="d" data-label="Contact">Sarah Hall</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Nurofen ×2</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Omnicom</td><td class="d" data-label="Contact">Sarah Hall</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Domino's</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">VCCP</td><td class="d" data-label="Contact">Rosie</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">LEGO, Poppy (She Built That)</td><td class="dir" data-label="Director">Mia Barnes &amp; Dave Meyers</td><td data-label="Agency">LEGO (direct)</td><td class="d" data-label="Contact">Alex Davis</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment">Yes</td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Candy Crush</td><td class="dir" data-label="Director">Dave Meyers</td><td data-label="Agency">Pablo</td><td class="d" data-label="Contact">Ruth Armitt</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">McDonald's, World Menu Heist</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Leo Burnett</td><td class="d" data-label="Contact">Peter Williams</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Xbox</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">McCann London</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Lepas, UK car launch</td><td class="dir" data-label="Director">Daniel Askill</td><td data-label="Agency">McCann</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Newcastle United, Dream Wild</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Craft WW / McCann</td><td class="d" data-label="Contact">Jacob Gardiner</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--tang)">On hold</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Samsung, Able</td><td class="dir" data-label="Director">Duncan Winecoff</td><td data-label="Agency">Cheil Worldwide</td><td class="d" data-label="Contact">Leon</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Soho House Los Cabos</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Soho House (direct)</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment">Yes</td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Ford × Puma, Thrill</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">W+K</td><td class="d" data-label="Contact">Matt Elingham</td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip" style="--c:var(--mute)">Closed</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Foot Locker, Foot Is Life</td><td class="dir" data-label="Director">Sharon Chetrit</td><td data-label="Agency">72andSunny Amsterdam</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip ghost">Not logged</span></td></tr><tr class="">
+  <td class="p" data-label="Project">George A/W '26</td><td class="dir" data-label="Director">Mia Barnes</td><td data-label="Agency">Lucky Generals</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip ghost">Not logged</span></td></tr><tr class="">
+  <td class="p" data-label="Project">Santander (Ant &amp; Dec)</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">Saatchi</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip ghost">Not logged</span></td></tr><tr class="">
+  <td class="p" data-label="Project">JPMorgan Chase</td><td class="dir" data-label="Director"><span style="opacity:.35">—</span></td><td data-label="Agency">M&amp;C Saatchi</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip ghost">Not logged</span></td></tr><tr class="">
+  <td class="p" data-label="Project">PepsiCo, House Rules</td><td class="dir" data-label="Director">Keane Shaw</td><td data-label="Agency">PepsiCo</td><td class="d" data-label="Contact"><span style="opacity:.35">—</span></td>
+  <td class="m" data-label="Budget"><span style="opacity:.35">—</span></td><td data-label="Treatment"><span style="opacity:.35">—</span></td><td data-label="Status"><span class="chip ghost">Not logged</span></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <footer aria-hidden="true"></footer>
+</main>
+
+
+
+
+</body></html>
